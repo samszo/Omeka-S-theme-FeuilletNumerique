@@ -1,0 +1,44 @@
+<manifest alg="2" build="2015.2.0.352" opt="false" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive" exportTarget="other" domain="https://gabariellegg.github.io/criblesEntretiensThese" resolutions="1x" timestamp="1626986802571">
+  <folder name="css">
+    <file name="site_global.css" crc="3916556066"/>
+    <file name="master_master_credits.css" crc="4271902832" ref="creditsrecherche"/>
+    <file name="master_master_home.css" crc="4051789503" ref="index"/>
+    <file name="master_master_protocole.css" crc="4042165702" ref="protocole"/>
+    <file name="master_master_repondreenquete.css" crc="4210973025" ref="arbo_repondreenquete"/>
+    <file name="master_master_resultats.css" crc="4041067970" ref="exploresultats"/>
+    <file name="master_master_repondrecribles.css" crc="3798555865" ref="criblesrepmedcult:criblesreptecconnum:criblesrepdisnum"/>
+    <file name="master_master_fincribles.css" crc="3791134505" ref="criblesfinrep"/>
+    <file name="criblesrepmedcult.css" crc="3806999023" ref="criblesrepmedcult"/>
+    <file name="index.css" crc="272649501" ref="index"/>
+    <file name="arbo_repondreenquete.css" crc="381248871" ref="arbo_repondreenquete"/>
+    <file name="criblesreptecconnum.css" crc="4112722886" ref="criblesreptecconnum"/>
+    <file name="criblesrepdisnum.css" crc="4052805860" ref="criblesrepdisnum"/>
+    <file name="criblesfinrep.css" crc="385050779" ref="criblesfinrep"/>
+    <file name="exploresultats.css" crc="4251155217" ref="exploresultats"/>
+    <file name="creditsrecherche.css" crc="333715535" ref="creditsrecherche"/>
+    <file name="protocole.css" crc="227012020" ref="protocole"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="312386352" ref="index:protocole:arbo_repondreenquete:criblesrepmedcult:criblesrepdisnum:criblesreptecconnum:criblesfinrep:exploresultats:creditsrecherche"/>
+    <file name="museutils.js" crc="4155826306" ref="index:protocole:arbo_repondreenquete:criblesrepmedcult:criblesrepdisnum:criblesreptecconnum:criblesfinrep:exploresultats:creditsrecherche"/>
+    <file name="whatinput.js" crc="86476730" ref="index:protocole:arbo_repondreenquete:criblesrepmedcult:criblesrepdisnum:criblesreptecconnum:criblesfinrep:exploresultats:creditsrecherche"/>
+    <file name="museconfig.js" crc="483509463" ref="index:protocole:arbo_repondreenquete:criblesrepmedcult:criblesrepdisnum:criblesreptecconnum:criblesfinrep:exploresultats:creditsrecherche"/>
+    <file name="jquery.watch.js" crc="117772946" ref="index:protocole:arbo_repondreenquete:criblesrepmedcult:criblesrepdisnum:criblesreptecconnum:criblesfinrep:exploresultats:creditsrecherche"/>
+    <file name="require.js" crc="228336483" ref="index:protocole:arbo_repondreenquete:criblesrepmedcult:criblesrepdisnum:criblesreptecconnum:criblesfinrep:exploresultats:creditsrecherche"/>
+    <file name="pie.js" crc="3827607177" ref="arbo_repondreenquete:criblesrepmedcult:criblesfinrep:exploresultats"/>
+  </folder>
+  <folder name="images">
+    <file name="logoparagraphe.jpg" crc="463479423" seo="true" ref="index:protocole:arbo_repondreenquete:criblesrepmedcult:criblesrepdisnum:criblesreptecconnum:criblesfinrep:exploresultats:creditsrecherche"/>
+    <file name="logop8.jpg" crc="161171875" seo="true" ref="index:protocole:arbo_repondreenquete:criblesrepmedcult:criblesrepdisnum:criblesreptecconnum:criblesfinrep:exploresultats:creditsrecherche"/>
+    <file name="logo-ulaval-reseaux-sociaux.jpg" crc="4028071778" seo="true" ref="index:protocole:arbo_repondreenquete:criblesrepmedcult:criblesrepdisnum:criblesreptecconnum:criblesfinrep:exploresultats:creditsrecherche"/>
+  </folder>
+  <file name="index.html" crc="3982921643" seo="true" mt="1626986422739" redirect="true"/>
+  <file name="protocole.html" crc="106935138" seo="true" mt="1626986471240" redirect="true"/>
+  <file name="arbo_repondreenquete.html" crc="99655021" seo="true" mt="1626986517857" redirect="true"/>
+  <file name="criblesrepmedcult.html" crc="3836214684" seo="true" mt="1626986566830" redirect="true"/>
+  <file name="criblesrepdisnum.html" crc="4155623381" seo="true" mt="1626986566830" redirect="true"/>
+  <file name="criblesreptecconnum.html" crc="263849318" seo="true" mt="1626986566830" redirect="true"/>
+  <file name="criblesfinrep.html" crc="163584368" seo="true" mt="1626986614617" redirect="true"/>
+  <file name="exploresultats.html" crc="4093492348" seo="true" mt="1626986661509" redirect="true"/>
+  <file name="creditsrecherche.html" crc="417146223" seo="true" mt="1626986706089" redirect="true"/>
+</manifest>
