@@ -1,0 +1,17 @@
+<?php
+$nav = $site->publicNav();
+$container = $nav->getContainer();
+$activePage = $nav->findActive($container);
+?>
+
+<div class="fondBloc border border-5 border-bottom-0 border-light">
+<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+<?php foreach($container as $page): ?>
+    <li class="nav-link px-2 list-inline-item <?php 
+        if($activePage && $page->label == $activePage['page']->label)echo ' menuActive"'; 
+        else echo ' menuPassive"'; ?>">
+    <?php echo $this->navigation()->menu()->htmlify($page) . PHP_EOL; ?>
+    </li>
+<?php endforeach; ?>
+</ul>
+</div>

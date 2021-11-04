@@ -1,0 +1,40 @@
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+  }
+
+  @media (min-width: 1024px) {
+	.bd-placeholder-img-lg {
+	  font-size: 3.5rem;
+	}
+  }
+
+  header {
+	padding: 6px;
+  }
+  header h6{
+	font-size: 0.9em;
+  }
+  header li{
+	font-size: 0.8em;
+  }
+  .fondBloc {
+	background-color: #343A40;
+  }
+.menuActive a{
+	color: #71C9FF;
+	font-weight: bold;
+	text-decoration:none;
+}
+.menuPassive a{
+	color: #FFD53B;
+	font-weight: bold;
+	text-decoration:none;
+}
+main {
+	background-color:	#d6d8d9;
+	color: black;
+}
