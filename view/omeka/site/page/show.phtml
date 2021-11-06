@@ -1,7 +1,10 @@
 <?php
 if($page->title()=='ajax'){
-    echo $this->partial('JDC/'.$page->slug(), []);
+    echo $this->partial('FeuNum/'.$page->slug(), []);
     return;
+}
+if($page->slug()=='repondre-enquete'){
+    $this->getTableQuestions();
 }
 $this->headLink()->appendStylesheet($this->assetUrl('css/page-blocks.css', 'Omeka'));
 $this->htmlElement('body')->appendAttribute('class', 'page');
