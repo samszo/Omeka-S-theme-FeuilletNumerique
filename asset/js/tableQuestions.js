@@ -145,7 +145,10 @@ function setTableQuestions(){
             return "node" + 
               (d.children ? " node--internal" : " node--leaf"); })
           .attr("transform", function(d) { 
-            return "translate(" + d.x + "," + d.y + ")"; });
+            return "translate(" + d.x + "," + d.y + ")"; })
+          .on('click',(e,d)=>{
+              if(d.depth>1)window.location.href="repondre-question?id="+d.data.id
+            });
       
       /* adds the circle to the node
       node.append("circle")

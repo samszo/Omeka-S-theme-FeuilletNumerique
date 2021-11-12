@@ -57,3 +57,55 @@ main {
 	color: rgb(0, 0, 0);
 	text-align: center;
 }
+
+.titreQuestion{
+	color:white;
+	padding: 0.2em;
+}
+
+.txtTitreAxe0{
+    fill:rgb(3, 246, 162);
+}
+.txtTitreAxe90{
+    fill:rgb(252, 161, 205);
+}
+.txtTitreAxe180{
+    fill:rgb(84, 214, 255);
+}
+.txtTitreAxe270{
+    fill:rgb(173, 158, 253);
+}
+.txtTitreAxehaut{
+  fill:white;
+}
+.txtTitreAxebas{
+  fill:white;
+}
+.axis line {
+  fill: none;
+  stroke: url(#degraxeH);
+  stroke-width:6px;
+}  
+.x.axis path {
+    fill: none;
+    stroke: url(#degraxeH);
+    stroke-width:6px;
+}  
+.y.axis path {
+    fill: none;
+    stroke: url(#degraxeV);
+    stroke-width:6px;
+}  
+.cFond{
+  stroke-opacity:0.5;
+  fill:none;
+  stroke:url(#degradCenter);
+  stroke-width:3px;
+}
+#orbit1{
+  fill:url(#degradCenter);
+  stroke:none;
+}
+#orbit4{
+  stroke-width:6px;
+}
