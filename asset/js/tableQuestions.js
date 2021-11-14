@@ -146,6 +146,7 @@ function setTableQuestions(){
               (d.children ? " node--internal" : " node--leaf"); })
           .attr("transform", function(d) { 
             return "translate(" + d.x + "," + d.y + ")"; })
+          .style('cursor',d=>d.depth>1 ? 'pointer' : 'none')
           .on('click',(e,d)=>{
               if(d.depth>1)window.location.href="repondre-question?id="+d.data.id
             });

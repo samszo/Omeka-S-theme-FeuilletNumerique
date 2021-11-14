@@ -1,3 +1,7 @@
+<?php
+$userBar = $this->userBar();
+
+?>
 <header class="fondBloc mb-auto">
 
 
@@ -33,21 +37,27 @@
                             </a>
                         </div>
                     </div>
-                    <div class="row" style='text-align: left;'>
-                        <ul class="list-unstyled">
-                            <li> - Un projet de recherche doctoral de Gabrielle Godin (U. Laval et U. Paris 8)</li>
-                            <li> - Dirigé par Renée Bourassa (U. Laval), Imad Saleh (U. Paris 8) et co-dirigé par Samuel
-                                Szoniecky (U. Paris 8)</li>
-                        </ul>
-                    </div>
                     <div class="row">
-                        <div class="d-flex align-items-center bd-highlight justify-content-center bg-dark"
-                            style="height:6em">
-                            <h2>Evaluer le pouvoir d'agir par des cribles</h2>
+                        <div class="col" style="text-align: left;">
+                            <ul class="list-unstyled">
+                                <li> - Un projet de recherche doctoral de Gabrielle Godin (U. Laval et U. Paris 8)</li>
+                                <li> - Dirigé par Renée Bourassa (U. Laval), Imad Saleh (U. Paris 8) et co-dirigé par
+                                    Samuel
+                                    Szoniecky (U. Paris 8)</li>
+                            </ul>
                         </div>
+                        <div class="col text-end">
+                            <?php echo $userBar;?>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="d-flex align-items-center bd-highlight justify-content-center bg-dark"
+                        style="height:6em">
+                        <h2>Evaluer le pouvoir d'agir par des cribles</h2>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </nav>
 </header>

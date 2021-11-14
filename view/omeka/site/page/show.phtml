@@ -7,7 +7,14 @@ if($page->slug()=='repondre-enquete'){
     $this->getTableQuestions();
 }
 if($page->slug()=='repondre-question'){
-    $this->getCrible($this->params()->fromQuery('id',false));
+    $id = $this->params()->fromQuery('id',false);
+    if($id){
+        $crible = $this->api()->read('items',$id)->getContent();
+        $this->getCrible($crible);
+        $this->getQuestionNavig($crible);    
+        //$dataProcess = ['rt'=>'Processus CartoAffect','actionApplication'=>$item];
+        //$processus = $this->CartoAffectFactory(['user'=>$user,'view'=>$dataProcess]);    
+    }
 }
 
 $this->headLink()->appendStylesheet($this->assetUrl('css/page-blocks.css', 'Omeka'));

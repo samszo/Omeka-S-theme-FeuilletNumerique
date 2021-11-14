@@ -55,10 +55,10 @@
             .attr('id',"degraxeH")
             .attr('x1',"0%")
             .attr('y1',"0%")
-            .attr('x2',"100%")
-            .attr('y2',"0%")
-        lg.append('stop').attr('offset',"0%").attr('stop-color',"rgb(173, 158, 253)")
-        lg.append('stop').attr('offset',"100%").attr('stop-color',"rgb(252, 161, 205)")
+            .attr('x2',"0%")
+            .attr('y2',"100%")
+        lg.append('stop').attr('offset',"5%").attr('stop-color',"rgb(173, 158, 253)")
+        lg.append('stop').attr('offset',"95%").attr('stop-color',"rgb(252, 161, 205)")
         lg = svgDefs.append('linearGradient')
             .attr('id',"degraxeV")
             .attr('x1',"0%")
@@ -217,24 +217,24 @@
         }
 
         // Fonction pour l'event "drag" d3js
-        this.dragstarted = function(d) {
+        this.dragstarted = function(e, d) {
             //on ne peut déplacer que le cercle 1
             if(d!=1)return;
-            me.setSvgDrag([d3.event.x,d3.event.y]);
+            me.setSvgDrag([e.x,e.y]);
             d3.select(this).raise().classed("active", true);
             me.onDrag = true;
         }
 
-        this.dragged = function() {
+        this.dragged = function(e, d) {
             //console.log(me.width+','+me.height+' : '+d3.event.x+','+d3.event.y);
             //pour limiter le drag
             //if(d3.event.x < me.width && d3.event.x > 0 && d3.event.y < me.height && d3.event.y > 0)
-            me.svgDrag.attr("cx", d3.event.x).attr("cy", d3.event.y);
+            svgDrag.attr("cx", e.x).attr("cy", e.y);
         }
 
-        this.dragended = function() {
+        this.dragended = function(e,d) {
             //récupère les données du points
-            let posi = d3.mouse(this);
+            let posi = [e.x, e.y];
             //calcule la distance et la pondération du crible
             let v = me.getValorisation(posi[0],posi[1]);
             //formate les données
@@ -253,7 +253,7 @@
         this.setSvgDrag = function(p){
             //console.log(p);
             let c = me.getGradient();
-            me.svgDrag = me.g.append("circle")
+            svgDrag = me.g.append("circle")
                 .attr('class','evals')
                 .attr('r',scCircle.step()/3)
                 .attr('cx',p[0])

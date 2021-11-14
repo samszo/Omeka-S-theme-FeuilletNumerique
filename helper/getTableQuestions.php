@@ -31,7 +31,7 @@ class getTableQuestions extends AbstractHelper
         $rsDR =  $view->api()->search('item_sets', $param)->getContent();
         foreach ($rsDR as $dr) {
             //récupère les items
-            $items = $view->api()->search('items', ['item_set_id' => $dr->id()])->getContent();
+            $items = $view->api()->search('items', ['item_set_id' => $dr->id(),'sort_by'=>"jdc:ordreCrible"])->getContent();
             //construction de la réponse
             $dtDR = ["name"=> $dr->displayTitle(),"id"=> $dr->id()];
             if(count($items))$dtDR["children"]= $this->setChildren(0, $items);

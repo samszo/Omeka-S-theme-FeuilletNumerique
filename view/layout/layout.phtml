@@ -22,10 +22,12 @@ $this->headScript()->appendFile($this->assetUrl('js/jquery-3.4.1.min.js'));
 $this->headScript()->appendFile($this->assetUrl('js/bootstrap.min.js'));
 $this->headScript()->appendFile($this->assetUrl('js/all.min.js'));//fontawesome
 $this->headScript()->appendFile($this->assetUrl('js/d3.min.js'));
+$this->headScript()->appendFile($this->assetUrl('js/geoLoc.js'));
 $this->headScript()->appendFile($this->assetUrl('js/main.js'));
 $this->headScript()->appendFile($this->assetUrl('js/tableQuestions.js'));
 $this->headScript()->appendFile($this->assetUrl('js/polarclock.js'));
 $this->headScript()->appendFile($this->assetUrl('js/cartoaxes.js'));
+
 
 
 $this->trigger('view.layout');
@@ -54,7 +56,7 @@ $this->trigger('view.layout');
     <!--- end menu------->
 
     
-      <main class="pt-5 px-5 mb-3 border border-5 border-top-0 border-light text-start " >
+      <main class="pt-3 px-3 mb-3 border border-5 border-top-0 border-light text-start " >
         <?php echo $this->content; ?>
       </main>
     

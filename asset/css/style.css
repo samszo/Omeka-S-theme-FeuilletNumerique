@@ -83,7 +83,7 @@ main {
 }
 .axis line {
   fill: none;
-  stroke: url(#degraxeH);
+  stroke: white;
   stroke-width:6px;
 }  
 .x.axis path {
