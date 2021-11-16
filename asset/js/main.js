@@ -1,4 +1,4 @@
-let width, height;
+let width, height, mdPatienter;
 const geo = new Geo();
 
 function initQuestion() {
@@ -6,6 +6,7 @@ function initQuestion() {
     let container = d3.select(".blocks").style('background-color', 'black');
     width = container.node().clientWidth;
     height = 800;
+    mdPatienter = new modalPatienter();
     let conteneur = d3.select("#cartoSonar");
     conteneur.select('svg').remove();
     conteneur.html('').style('display', 'block');
@@ -71,13 +72,15 @@ function getCartoSonar() {
         'fctGetGrad': oPolarclock.getInstantColors,
         'fctSavePosi': savePosi,
         'width': width,
-        'height': height
+        'height': height,
+        'urlData':urlGetRapports
     });
 
 }
 
 function savePosi(d) {
     console.log(d);
+    mdPatienter.show();
     geo.getPosition(function (coords) {
 
         let flux = crible.item['jdc:hasCribleCarto'][0]['display_title'] + ' : ' + crible.domaine['o:title']
@@ -161,7 +164,9 @@ function savePosi(d) {
                 d3.select('#waitError').style('display', 'block').html(e.responseText);
                 d3.select('#waitFermer').style('display', 'block');
                 d3.select('#waitloader').style('display', 'none');
-
+            })
+            .always(function(){
+                mdPatienter.close();
             });
     });
 }

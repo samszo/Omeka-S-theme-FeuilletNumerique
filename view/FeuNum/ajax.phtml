@@ -5,11 +5,11 @@ $log = $this->logger();
 
 switch ($type) {
     case 'savePosi':
-            //création des rapports
-            $user = $this->identity();
-            $posi = $this->CartoAffectFactory(['user'=>$user,'view'=>$this->params()->fromPost()]);
-            echo $this->json($posi);                
-            break;
+    case 'getPosis':
+        $user = $this->identity();
+        $posi = $this->CartoAffectFactory(['user'=>$user,'post'=>$this->params()->fromPost(),'query'=>$this->params()->fromQuery()]);
+        echo $this->json($posi);                
+    break;
 }
 
 

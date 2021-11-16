@@ -47,7 +47,8 @@ class getCrible extends AbstractHelper
         $view->headScript()->appendScript('const crible = '.json_encode($result).';
             
             const actant = '.$jsUser.';
-            const urlSendRapports = "ajax?json=1&type=savePosi&idRt='.$rt->id().'";            
+            const urlSendRapports = "ajax?json=1&type=savePosi";            
+            const urlGetRapports = "ajax?json=1&type=getPosis&idCrible='.$crible->id().'&idDoc='.$crible->id().'";            
         ');
 
     }             
