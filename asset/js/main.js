@@ -11,6 +11,7 @@ function initQuestion() {
     conteneur.select('svg').remove();
     conteneur.html('').style('display', 'block');
     //ajoute l'avancement du processus
+    let avancements = new avancementProcess({'cont':"#cartoSonar",'data':dataProcess});
 
 
     //ajoute les boutons de navigation dans les questions

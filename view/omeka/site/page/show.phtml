@@ -4,7 +4,7 @@ if($page->slug()=='ajax'){
     return;
 }
 if($page->slug()=='repondre-enquete'){
-    $this->getTableQuestions();
+    $this->getQuestionsProcess();
 }
 if($page->slug()=='repondre-question'){
     $id = $this->params()->fromQuery('id',false);
@@ -12,8 +12,7 @@ if($page->slug()=='repondre-question'){
         $crible = $this->api()->read('items',$id)->getContent();
         $this->getCrible($crible);
         $this->getQuestionNavig($crible);    
-        //$dataProcess = ['rt'=>'Processus CartoAffect','actionApplication'=>$item];
-        //$processus = $this->CartoAffectFactory(['user'=>$user,'view'=>$dataProcess]);    
+        $this->getQuestionsProcess();
     }
 }
 
