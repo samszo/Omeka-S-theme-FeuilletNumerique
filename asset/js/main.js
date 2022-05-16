@@ -1,5 +1,5 @@
 let width, height, mdPatienter;
-const geo = new Geo();
+//const geo = new Geo();
 
 function initQuestion() {
 
@@ -11,7 +11,7 @@ function initQuestion() {
     conteneur.select('svg').remove();
     conteneur.html('').style('display', 'block');
     //ajoute l'avancement du processus
-    let avancements = new avancementProcess({'cont':"#cartoSonar",'data':dataProcess});
+    //let avancements = new avancementProcess({'cont':"#cartoSonar",'data':dataProcess});
 
 
     //ajoute les boutons de navigation dans les questions
@@ -25,7 +25,7 @@ function initQuestion() {
         });
     //ajoute le titre du domaine et de la question
     conteneur.append('h3').attr('class', 'titreQuestion').text(crible.domaine['o:title']);
-    conteneur.append('h4').attr('class', 'titreQuestion').text(crible.item['o:title']);
+    conteneur.append('h4').attr('class', 'titreQuestion').text(crible.item['skos:prefLabel'][0]['@value']);
 
 }
 
@@ -82,8 +82,8 @@ function getCartoSonar() {
 function savePosi(d) {
     console.log(d);
     mdPatienter.show();
-    geo.getPosition(function (coords) {
-
+    //geo.getPosition(function (coords) {
+        let coords = {'latitude':0,'longitude':0};
         let flux = crible.item['jdc:hasCribleCarto'][0]['display_title'] + ' : ' + crible.domaine['o:title']
         d.idCarto = crible.item['jdc:hasCribleCarto'][0]['value_resource_id'];
         d.idCrible = crible.item['o:id'];
@@ -169,5 +169,5 @@ function savePosi(d) {
             .always(function(){
                 mdPatienter.close();
             });
-    });
+    //});
 }
