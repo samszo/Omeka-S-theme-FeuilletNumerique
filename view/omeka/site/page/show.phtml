@@ -5,7 +5,7 @@ if($page->slug()=='ajax'){
 }
 if($page->slug()=='repondre-enquete'){
     //vérifie si l'utilisateur à répondu au questionnaire de profil
-    $profil = $this->api()->search('items', ['item_set_id' => 668,'owner_id'=>$this->identity()->getId()])->getContent();
+    $profil = $this->api()->search('items', ['item_set_id' => 666,'owner_id'=>$this->identity()->getId()])->getContent();
     if(count($profil)==0){
         header("Location: profil");
         exit;    
