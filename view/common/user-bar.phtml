@@ -8,9 +8,11 @@ $urlHelper = $this->plugin('url');
 	<div class="user-links">
 	    <span class="user-id">
 	        <?php
-	        $url = $urlHelper('admin/id', ['controller' => 'user', 'id' => $user->getId()]);
-	        //echo sprintf($translate('Signed in as %s'), $hyperlink($user->getName(), $url));
+			/*
+	        $url = $urlHelper('site/id', ['controller' => 'user', 'id' => $user->getId()]);
 	        echo sprintf('%s', $hyperlink($user->getName(), $url));
+			*/
+	        echo $user->getName();
 	        ?>
 	    </span>
         <?php echo '<a href="'.$urlHelper('logout').'"><i class="fas fa-sign-out-alt"></i></a>'
