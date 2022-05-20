@@ -17,7 +17,7 @@ $urlHelper = $this->plugin('url');
 	    </span>
         <?php 
 		//echo '<a href="'.$urlHelper('logout').'"><i class="fas fa-sign-out-alt"></i></a>';
-		echo '<a href="'.$this->url('site', ['controller' => 'page', 'action' => 'logout'], true).'"><i class="fas fa-sign-out-alt"></i></a>';
+		echo '<a href="'.$this->url('site', ['controller' => 'page', 'action' => 'logout'], true).'/page/logout"><i class="fas fa-sign-out-alt"></i></a>';
 		
 		?>
 	</div>
