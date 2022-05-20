@@ -24,7 +24,7 @@ $urlHelper = $this->plugin('url');
 <?php else: ?>
 	<div class="user-links">
 	<span class="user-id">Anonyme</span>
-    <?php echo $hyperlink($translate('Log in'), $urlHelper('login'), ['class' => 'login']); ?>
+    <?php echo $hyperlink($translate('Log in'), $this->url('site', ['controller' => 'page', 'action' => 'logout'], true).'/page/presentation_projet', ['class' => 'login']); ?>
 	</div>
 <?php endif; ?>
 </div>
