@@ -103,7 +103,7 @@ function setTableQuestions(){
         rectNode = { width : 160, height : 48, textMargin : 5 };
       var margin = {top: 40, right: 90, bottom: 50, left: 90},
           width = mainDivSize.width - margin.left - margin.right,
-          height = 1300 - margin.top - margin.bottom;
+          height = 2000 - margin.top - margin.bottom;
       
       // declares a tree layout and assigns the size
       var treemap = d3.tree()
