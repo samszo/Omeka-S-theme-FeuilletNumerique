@@ -1,5 +1,6 @@
 <?php
-    $this->auth()->clearIdentity();
+    $user = $this->auth();
+    $user->clearIdentity();
 
     return $this->redirect()->toRoute('login');
 
