@@ -15,9 +15,10 @@ $urlHelper = $this->plugin('url');
 	        echo $user->getName();
 	        ?>
 	    </span>
-        <?php echo '<a href="'.$urlHelper('logout').'"><i class="fas fa-sign-out-alt"></i></a>'
-		//$hyperlink($translate('Logout'), $urlHelper('logout'), ['class' => 'logout']); 
-		//;
+        <?php 
+		//echo '<a href="'.$urlHelper('logout').'"><i class="fas fa-sign-out-alt"></i></a>';
+		echo '<a href="'.$urlHelper('logout').'"><i class="fas fa-sign-out-alt"></i></a>';
+		
 		?>
 	</div>
 <?php else: ?>
