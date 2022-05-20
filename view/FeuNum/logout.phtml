@@ -1,0 +1,10 @@
+<?php
+    $user = $this->identity();
+    $user->clearIdentity();
+
+    return $this->redirect()->toRoute('login');
+
+?>
+
+
+
