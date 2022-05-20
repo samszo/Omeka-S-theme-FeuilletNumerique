@@ -1,4 +1,8 @@
 <?php
+if($page->slug()=='logout'){
+    echo $this->partial('FeuNum/'.$page->slug(), []);
+    return;
+}
 if($page->slug()=='ajax'){
     echo $this->partial('FeuNum/'.$page->slug(), []);
     return;
