@@ -1,6 +1,6 @@
 <?php
     $this->CartoAffectFactory(['logout'=>true]);
-    return $this->redirect()->toRoute('login');
+    header($this->url('site', ['controller' => 'page'], true)."/page/presentation_projet");
 
 ?>
 
