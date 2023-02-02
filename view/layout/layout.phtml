@@ -30,6 +30,8 @@ $this->headScript()->appendFile($this->assetUrl('js/tableQuestions.js'));
 $this->headScript()->appendFile($this->assetUrl('js/polarclock.js'));
 $this->headScript()->appendFile($this->assetUrl('js/cartoaxes.js'));
 $this->headScript()->appendFile($this->assetUrl('js/avancementProcess.js'));
+$this->headScript()->appendFile($this->assetUrl('js/analyses.js'));
+$this->headScript()->appendFile($this->assetUrl('js/boxplot.js'));
 
 
 $this->trigger('view.layout');
@@ -64,9 +66,6 @@ $this->trigger('view.layout');
     
       <?php echo $this->partial('FeuNum/footer'); ?>
 
-    </div>
-    
-    
-        
-      </body>
+    </div>        
+  </body>
 </html>

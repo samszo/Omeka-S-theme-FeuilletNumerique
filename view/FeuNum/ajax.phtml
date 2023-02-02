@@ -10,6 +10,9 @@ switch ($type) {
         $posi = $this->CartoAffectFactory(['user'=>$user,'post'=>$this->params()->fromPost(),'query'=>$this->params()->fromQuery()]);
         echo $this->json($posi);                
     break;
+    case 'getAnalyses':
+        echo $this->json($this->getAnalyses(false,true));
+    break;
 }
 
 
