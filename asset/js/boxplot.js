@@ -13,13 +13,12 @@ class boxplot {
         this.group = params.group ? params.group : 'theme';
         this.mesure = params.mesure ? params.mesure : 'c';
         this.pops = params.pops ? params.pops : false;
-        this.cont = params.cont ? params.cont : d3.select('body'),
-        this.width = params.width ? params.width : 460,
-        this.height = params.height ? params.height : 400,
-        this.margin = params.margin ? params.margin : {top: 10, right: 30, bottom: 30, left: 40};
+        this.cont = params.cont ? params.cont : d3.select('body');
+        this.width = params.width ? params.width : 460;
+        this.height = params.height ? params.height : 400;
+        this.margin = params.margin ? params.margin : {top: 10, right: 30, bottom: 40, left: 40};
         this.svg;
         this.init = function () {
-
             // set the dimensions and margins of the graph
             me.width -= me.margin.left - me.margin.right,
             me.height -= me.margin.top - me.margin.bottom;
@@ -30,6 +29,7 @@ class boxplot {
                 .append("svg")
                     .attr("width", me.width + me.margin.left + me.margin.right)
                     .attr("height", me.height + me.margin.top + me.margin.bottom)
+                    .style('background-color','white')
                 .append("g")
                     .attr("transform",
                         "translate(" + me.margin.left + "," + me.margin.top + ")");
@@ -66,14 +66,16 @@ class boxplot {
                 }
 
                 // Show the X scale
-                var x = d3.scaleBand()
+                let x = d3.scaleBand()
                     .range([ 0, me.width ])
                     .domain(sumstat.k)
                     .paddingInner(1)
-                    .paddingOuter(.5)
-                me.svg.append("g")
+                    .paddingOuter(.5),
+                    boxWidth = x.step()-12,
+                gAxe=me.svg.append("g")
                     .attr("transform", "translate(0," + me.height + ")")
-                    .call(d3.axisBottom(x))
+                    .call(d3.axisBottom(x));            
+                gAxe.selectAll('text').call(wrap,boxWidth)            
 
                 // Show the Y scale
                 var y = d3.scaleLinear()
@@ -91,11 +93,10 @@ class boxplot {
                     .attr("x2", d=>x(d.key))
                     .attr("y1", d=>y(d.value.min))
                     .attr("y2", d=>y(d.value.max))
-                    .attr("stroke", "black")
+                    .attr("stroke", "#4d4848c9")
                     .style("width", 40)
 
                 // rectangle for the main box
-                var boxWidth = 100
                 me.svg
                     .selectAll("boxes")
                     .data(sumstat.s)
@@ -105,7 +106,7 @@ class boxplot {
                         .attr("y", d=>y(d.value.q3))
                         .attr("height", d=>y(d.value.q1)-y(d.value.q3))
                         .attr("width", boxWidth )
-                        .attr("stroke", "black")
+                        .attr("stroke", "#4d4848c9")
                         .style("fill", "none")
                 // Show the median
                 me.svg
@@ -117,10 +118,10 @@ class boxplot {
                     .attr("x2", d=>x(d.key)+boxWidth/2)
                     .attr("y1", d=>y(d.value.median))
                     .attr("y2", d=>y(d.value.median))
-                    .attr("stroke", "black")
+                    .attr("stroke", "#4d4848c9")
                     .style("width", 80)
 
-                //rectangles pour chaque population
+                //pour chaque population
                 let popBand = d3.scaleBand()
                     .domain(me.pops.map(p=>p.id))
                     .range([ 0, boxWidth]),
@@ -128,6 +129,22 @@ class boxplot {
                     .selectAll(".popBoxes")
                     .data(me.pops).enter().append("g")
                     .attr('class',"popBoxes").attr('id',p=>p.k+p.id);
+
+                // Show the main vertical line
+                gPops
+                    .selectAll("vertLines")
+                    .data(p=>p.sumstat.s)
+                    .enter()
+                    .append("line")
+                    .attr('class','vertLines')
+                    .attr("x1", d=>x(d.key)-(boxWidth/2)+popBand(d.p.id)+(boxWidth/me.pops.length/2))
+                    .attr("x2", d=>x(d.key)-(boxWidth/2)+popBand(d.p.id)+(boxWidth/me.pops.length/2))
+                    .attr("y1", d=>y(d.value.min))
+                    .attr("y2", d=>y(d.value.max))
+                    .attr("stroke", d=>d.p.c)
+                    .style("width", 40)
+
+                //show the rectangle
                 gPops.selectAll("rect")
                 .data(p=>p.sumstat.s)
                 .enter().append("rect")
@@ -137,6 +154,19 @@ class boxplot {
                     .attr("width", boxWidth/me.pops.length)
                     .attr("stroke", d=>d.p.c)
                     .style("fill", 'none')
+
+                // Show the median
+                gPops
+                    .selectAll("medianLines")
+                    .data(p=>p.sumstat.s)
+                    .enter()
+                    .append("line")
+                    .attr('class','medianLines')
+                    .attr("x1", d=>x(d.key)-(boxWidth/2)+popBand(d.p.id))
+                    .attr("x2", d=>x(d.key)-(boxWidth/2)+popBand(d.p.id)+boxWidth/me.pops.length)
+                    .attr("y1", d=>y(d.value.median))
+                    .attr("y2", d=>y(d.value.median))
+                    .attr("stroke", d=>d.p.c)
 
         }
 

@@ -64,7 +64,7 @@ function setLayout(){
 function showStat(cont,group){
     //calcul la taille du graphe
     let divGraphDim = ntStatsContent.node().getBoundingClientRect(),
-        w=divGraphDim.width-100,h=divGraphDim.height-100;
+        w=divGraphDim.width-100,h=divGraphDim.height-140;
 
     //récupère le group sélectionné
     if(group==null){
@@ -92,7 +92,17 @@ function showStat(cont,group){
         case 'Question':
             showStatQuestion(posis,group,sltActant,w,h);
             break;
-    }
+        case 'Concept':
+            showTagCloud(posis,group,w,h);
+            break;
+        }
+}
+
+function showTagCloud(posis, group, w, h){
+    let tc = new tagcloud({'cont':ntStatsContent.select('#nav'+group), data:posis 
+        , 'width':w,'height':h
+        , global:true, kText:'titreConcept', kVal:'d'});
+
 }
 
 function showStatQuestion(posis,group,pops,w,h){
@@ -100,7 +110,7 @@ function showStatQuestion(posis,group,pops,w,h){
     cont.selectAll('div').remove();
     let groupData = d3.group(posis, d => d['titre'+group]),
     q = cont.selectAll('div').data(Array.from(groupData.keys()).sort()).enter().append('div');
-    q.append('h5').html(p=>p);
+    q.append('h5').style('margin-top','6px').html(p=>p);
     q.append('div').attr('id',(p,i)=>'graph'+group+i);
     Array.from(groupData.entries()).forEach((e,i)=>{
         new boxplot({'cont':ntStatsContent.select('#graph'+group+i),'data':e[1],'group':'titreConcept'
