@@ -13,7 +13,7 @@ class getCrible extends AbstractHelper
      * @param o:item   $crible item du crible
 
      */
-    public function __invoke($crible)
+    public function __invoke($crible,$js=true)
     {
         $view = $this->getView();
         $api = $view->api();
@@ -44,12 +44,14 @@ class getCrible extends AbstractHelper
             $cpts[] = $cpt;
         }
         $result=['domaine'=>$d,'item'=>$crible,'concepts'=>$cpts,'rt'=>$rt];
-        $view->headScript()->appendScript('const crible = '.json_encode($result).';
-            
-            const actant = '.$jsUser.';
-            const urlSendRapports = "ajax?json=1&type=savePosi";            
-            const urlGetRapports = "ajax?json=1&type=getPosis&idCrible='.$crible->id().'&idDoc='.$crible->id().'";            
-        ');
+        if($js){
+            $view->headScript()->appendScript('let crible = '.json_encode($result).';
+                
+                const actant = '.$jsUser.';
+                const urlSendRapports = "ajax?json=1&type=savePosi";            
+                const urlGetRapports = "ajax?json=1&type=getPosis&idCrible='.$crible->id().'&idDoc='.$crible->id().'";            
+            ');
+        }else return $result;
 
     }             
 

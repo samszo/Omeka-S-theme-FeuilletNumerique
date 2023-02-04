@@ -29,15 +29,20 @@ function initQuestion() {
 
 }
 
-function getCartoSonar() {
+function getCartoSonar(data=false, c=false,d=false,w=false,h=false,initQ=true) {
+    width = w ? w : width;
+    height = h ? h : height;
 
+
+    crible = c ? c : crible;
     if (!crible) return;
-    initQuestion();
+    if(initQ)initQuestion();
 
     //ajoute le svg global
-    let svg = d3.select("#cartoSonar").append('svg');
-    svg.attr("id", "svgGlobal")
+    let idDiv = d ? d : 'cartoSonar', svg = d3.select("#"+idDiv).append('svg');
+    svg.attr("id", "svgGlobal"+idDiv)
         .attr("width", width)
+        .style("background-color",'black')
         .attr("height", height);
 
     //supprime les anciens graphe
@@ -46,7 +51,7 @@ function getCartoSonar() {
 
     //ajoute la polar clock
     oPolarclock = new polarclock({
-        'idSvg': 'svgGlobal',
+        'idSvg': 'svgGlobal'+idDiv,
         'spacing': 0.000001,
         'width': width,
         'height': height,
@@ -65,7 +70,7 @@ function getCartoSonar() {
     });
     //ajoute la carto axe            
     oCartoaxes = new cartoaxes({
-        'idSvg': 'svgGlobal',
+        'idSvg': 'svgGlobal'+idDiv,
         'tick': 0,
         'idDoc': crible.item['o:id'],
         'hasRatingSystem': crible.item['o:id'],
@@ -74,7 +79,8 @@ function getCartoSonar() {
         'fctSavePosi': savePosi,
         'width': width,
         'height': height,
-        'urlData':urlGetRapports
+        'urlData':  data ? false : urlGetRapports,
+        'posis':data
     });
 
 }

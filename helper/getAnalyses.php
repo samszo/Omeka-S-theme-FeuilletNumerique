@@ -32,22 +32,23 @@ class getAnalyses extends AbstractHelper
             $concepts=[];
             $cribles=[];
             $posis=[];
+            $sp=[];
             $doublons=[];
             foreach ($ps as $p) {
                 $a = $p->value('jdc:hasActant')->valueResource();
-                if(!$doublons[$a->id()]){
+                if(!isset($doublons[$a->id()])){
                     $actants[]=$a;
                     $doublons[$a->id()]=count($actants);
                 }
                 $crible = $p->value('jdc:hasDoc');
                 if($crible){
                     $crible = $crible->valueResource();
-                    if(!$doublons[$crible->id()]){
-                        $cribles[]=$crible;
+                    if(!isset($doublons[$crible->id()])){
+                        $cribles[]=$view->getCrible($crible,false);
                         $doublons[$crible->id()]=count($cribles);
                     }
                     $theme=$crible->value('skos:broader')->valueResource();
-                    if(!$doublons[$theme->id()]){
+                    if(!isset($doublons[$theme->id()])){
                         $themes[]=$theme;
                         $doublons[$theme->id()]=count($themes);
                     }
@@ -59,7 +60,7 @@ class getAnalyses extends AbstractHelper
                     $date = $p->value('jdc:creationDate')->__toString();            
                     for ($i=0; $i < count($cpts); $i++) { 
                         $cpt = $cpts[$i]->valueResource();
-                        if(!$doublons[$cpt->id()]){
+                        if(!isset($doublons[$cpt->id()])){
                             $concepts[]=$cpt;
                             $doublons[$cpt->id()]=count($concepts);
                         }
@@ -77,11 +78,12 @@ class getAnalyses extends AbstractHelper
                             'd'=>$distances[$i]->__toString(),'c'=>$center,'x'=>$valX,'y'=>$valY,'date'=>$date
                         ];
                     }
+                    $sp[]=$p;
                 }else{
                     $t=1;
                 }
             }            
-            $result=['posis'=>$posis,'actants'=>$actants,'themes'=>$themes,'concepts'=>$concepts,'cribles'=>$cribles];
+            $result=['sp'=>$sp,'posis'=>$posis,'actants'=>$actants,'themes'=>$themes,'concepts'=>$concepts,'cribles'=>$cribles];
         }else{
             $result=['urlData'=>$view->assetUrl('data/analyses.json')];
         }

@@ -95,7 +95,38 @@ function showStat(cont,group){
         case 'Concept':
             showTagCloud(posis,group,w,h);
             break;
+        case 'Position':
+            showPosition(posis,group,w,h,sltActant);
+            break;
         }
+}
+
+function showPosition(posis, group, w, h, actants){
+
+    let cont = ntStatsContent.select('#nav'+group);
+    cont.selectAll('div').remove();
+    //création des questions
+    let questions = Array.from(d3.group(posis, d => d['titreQuestion']).keys()).sort(),
+    idActants = actants.map(a=>a.id), 
+    q = cont.selectAll('div').data(questions).enter().append('div');
+    q.append('h5').style('margin-top','6px').html(p=>p);
+    q.append('div').attr('id',(p,i)=>'graph'+group+i);
+    
+    questions.forEach((q,i)=>{
+        //filtre les réponses
+        let reponses = analyses.sp.filter(s=>
+            idActants.includes(s['jdc:hasActant'][0]['value_resource_id'])
+            &&
+            s['jdc:hasDoc'][0]['display_title']==q
+            ),
+        crible = analyses.cribles.filter(c=>c.item["o:id"]==reponses[0]['jdc:hasDoc'][0]['value_resource_id']);
+        //ajoute la couleur de la position
+        reponses.forEach(r=>{
+            let a = actants.filter(a=>a.id==r['jdc:hasActant'][0]['value_resource_id'])
+            r.color=a[0].c;
+        })
+        getCartoSonar(reponses,crible[0],'graph'+group+i, w, h,false);    
+    });    
 }
 
 function showTagCloud(posis, group, w, h){

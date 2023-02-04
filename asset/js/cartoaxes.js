@@ -25,6 +25,7 @@ class cartoaxes {
             'id': '3',
             'idP': '0'
         }];
+        this.posis = params.posis ? params.posis : false;
         this.urlData = params.urlData ? params.urlData : false;
         this.fctCallBackInit = params.fctCallBackInit ? params.fctCallBackInit : false;
         this.svg = d3.select("#" + params.idSvg),
@@ -403,7 +404,7 @@ class cartoaxes {
                     .always(function () {
                         mdPatienter.close();
                     });
-            }
+            }else me.drawPosi(me.posis);
 
         };
 
@@ -425,6 +426,7 @@ class cartoaxes {
                     return me.y(parseFloat(d['jdc:yRatingValue'][0]['@value']));
                 })
                 .attr('fill', function (d) {
+                    if(d.color)return d.color;
                     d.degrad = {
                         'nom': d['jdc:degradName'][0]['@value'],
                         'colors': []
