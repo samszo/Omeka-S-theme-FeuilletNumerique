@@ -32,7 +32,7 @@ function setLayout(){
         .style('padding','4px');
     
     //création des rendus statistiques
-    let stats=['Theme','Question','Concept','Position'], tabStats = `<div class="bd-stats">
+    let stats=['Theme','Concept','Question','Position'], tabStats = `<div class="bd-stats">
         <nav>
           <div class="nav nav-tabs mb-3" id="ntStats" role="tablist">
           </div>
@@ -59,7 +59,7 @@ function setLayout(){
         .attr('id',(s,i)=>"nav"+s)
         .attr('role',"tabpanel")
         .attr('aria-labelledby',(s,i)=>"ntStats"+s);
-    showStat(null,'Theme');
+    showStat(null,null);
 }
 function showStat(cont,group){
     //calcul la taille du graphe

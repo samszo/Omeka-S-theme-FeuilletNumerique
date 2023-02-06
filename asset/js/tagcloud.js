@@ -74,7 +74,7 @@ class tagcloud {
 		    	}
 		    	posiTxt.innerHTML = me.txt;
 		    }
-		    
+		    console.log('tags',me.tags);
 			max = me.tags.length;
 			
 			me.cont.select('svg').remove();
