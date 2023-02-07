@@ -77,7 +77,7 @@ function showStat(cont,group){
     let sltActant = [];
     actants.selectAll('input').each((a,i)=>{
         let n = actants.select('#switch'+a["o:id"]);
-        if(n.node().checked)sltActant.push({'k':'idActant','id':a['o:id'],'c':color(i)});
+        if(n.node().checked)sltActant.push({'k':'idActant','id':a['o:id'],'c':color(i),'titre':a['o:title']});
     })    
     //filtre les data
     let posis = analyses.posis.filter(p=>sltActant.filter(a=>a.id==p[a.k]).length);
@@ -85,21 +85,44 @@ function showStat(cont,group){
     //suivant la stat
     switch (group) {
         case 'Theme':
-            let gm = new boxplot({'cont':ntStatsContent.select('#nav'+group),'data':posis
-                ,'group':'titre'+group, 'mesure':'poids'
-                ,'pops':sltActant, 'width':w,'height':h
-                });                
+            showTheme(posis, group, w, h, sltActant);
             break;
         case 'Question':
             showStatQuestion(posis,group,sltActant,w,h);
             break;
         case 'Concept':
-            showTagCloud(posis,group,w,h);
+            showTagCloud(posis,group,w+80,h+80);
             break;
         case 'Position':
             showPosition(posis,group,w,h,sltActant);
             break;
         }
+}
+
+function showTheme(posis, group, w, h, actants){
+    let divCont = ntStatsContent.select('#nav'+group);
+    divCont.selectAll('div').remove();
+    let divBarStack = divCont.append('div').attr('id','barstack'+group),
+        divBoxPlot = divCont.append('div').attr('id','boxplot'+group),
+        tap = [], zDomain=[], colors=[];
+    actants.forEach(a => {
+        zDomain.push(a.titre);
+        colors.push(a.c);
+        analyses.themes.forEach(t=>{
+            tap.push({'titreActant':a.titre,'titreTheme':t['o:title']
+                , 'nbPosi':posis.filter(p => p['idActant'] == a.id && p['idTheme'] == t['o:id']).length
+            });    
+        })
+    });
+    let sb = new stackbar({'cont':divBarStack,'data':tap
+        ,'pX':'titre'+group, 'pY':'nbPosi', 'pZ':'titreActant'
+        ,'yLabel':'Nombre de position pour un actant','zDomain':zDomain
+        , 'width':w,'height':h, colors:colors
+        }),                
+    bp = new boxplot({'cont':divBoxPlot,'data':posis
+        ,'group':'titre'+group, 'mesure':'poids'
+        ,'pops':actants, 'width':w,'height':h
+        });                    
 }
 
 function showPosition(posis, group, w, h, actants){

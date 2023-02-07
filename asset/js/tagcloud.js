@@ -39,7 +39,7 @@ class tagcloud {
 		statusText = d3.select("#status_"+this.idDoc),
 		maxLength = 30,
 		maxTag = 1000, 
-		minmaxFont = [8, 96],
+		minmaxFont = [2, 64],
 		posiTxt = d3.select("#select_txt_"+this.idDoc),
 		max, svg, background, vis, tooltip,ext,fontSize;
 		
@@ -104,6 +104,7 @@ class tagcloud {
 				.words(me.tags)
 			    .rotate(0)
 			    .spiral("rectangular")
+				.random(d=>0)
 			    .fontSize(function(d) {
 			    	var n = d.value*16;
 			    	if(me.exi){
