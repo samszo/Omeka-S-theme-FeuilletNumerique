@@ -43,6 +43,7 @@ class cartoaxes {
         this.idDoc = params.idDoc ? params.idDoc : false;
         this.typeSrc = params.typeSrc ? params.typeSrc : false;
         this.hasRatingSystem = params.hasRatingSystem ? params.hasRatingSystem : false;
+        this.fctClickPosi = params.fctClickPosi ? params.fctClickPosi : console.log;
 
         //variable pour les axes
         var labelFactor = 1, //How much farther than the radius of the outer circle should the labels be placed
@@ -438,6 +439,7 @@ class cartoaxes {
                 })
                 .attr('stroke', 'black')
                 .attr("stroke-width", '1')
+                .on('click', me.fctClickPosi)
                 .on('mouseenter', showTooltip)
                 .on('mouseleave', hideTooltip);
         }

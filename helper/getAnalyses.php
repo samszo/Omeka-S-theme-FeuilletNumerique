@@ -57,13 +57,24 @@ class getAnalyses extends AbstractHelper
                     $center = $p->value('jdc:distanceCenter')->__toString();
                     $valX = $p->value('jdc:xRatingValue')->__toString();
                     $valY = $p->value('jdc:yRatingValue')->__toString();
-                    $date = $p->value('jdc:creationDate')->__toString();            
-                    for ($i=0; $i < count($cpts); $i++) { 
+                    $date = $p->value('jdc:creationDate')->__toString();
+                    $nbC = count($cpts);      
+                    for ($i=0; $i < $nbC; $i++) {                         
                         $cpt = $cpts[$i]->valueResource();
                         if(!isset($doublons[$cpt->id()])){
                             $concepts[]=$cpt;
                             $doublons[$cpt->id()]=count($concepts);
                         }
+                        $dis = $distances[$i]->__toString();
+                        /*cf. valorisation du poids du concept
+                        https://github.com/samszo/Omeka-S-theme-FeuilletNumerique/blob/main/asset/js/cartoaxes.js#L501
+                        $angleSlice = M_PI * 2 / $nbC;      
+                        $angleAxe = $angleSlice * $i * (180 / M_PI);
+                        $angleAxe = $angleAxe >= 90 ? $angleAxe - 90 : $angleAxe + 270;
+                        */
+                        $angleC = 360/$nbC * ($i+1);
+                        $disC = abs($dis) > $angleC ? abs($dis)-$angleC : abs($dis);  
+                        $poids = $center+180-$disC+1;
                         $posis[] = [
                             'idPosition'=>$p->id(),
                             'idConcept'=>$cpt->id(),
@@ -75,7 +86,11 @@ class getAnalyses extends AbstractHelper
                             'titreQuestion'=>$crible->displayTitle(),
                             'titreTheme'=>$theme->displayTitle(),
                             'titreActant'=>$a->displayTitle(),                            
-                            'd'=>$distances[$i]->__toString(),'c'=>$center,'x'=>$valX,'y'=>$valY,'date'=>$date
+                            'poids'=>$poids,
+                            'dc'=>$disC,
+                            'd'=>$dis,
+                            'c'=>$center,
+                            'x'=>$valX,'y'=>$valY,'date'=>$date
                         ];
                     }
                     $sp[]=$p;

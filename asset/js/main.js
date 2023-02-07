@@ -29,7 +29,7 @@ function initQuestion() {
 
 }
 
-function getCartoSonar(data=false, c=false,d=false,w=false,h=false,initQ=true) {
+function getCartoSonar(data=false, c=false,d=false,w=false,h=false,initQ=true,fctClickPosi) {
     width = w ? w : width;
     height = h ? h : height;
 
@@ -76,7 +76,8 @@ function getCartoSonar(data=false, c=false,d=false,w=false,h=false,initQ=true) {
         'hasRatingSystem': crible.item['o:id'],
         'crible': lstItemCrible,
         'fctGetGrad': oPolarclock.getInstantColors,
-        'fctSavePosi': savePosi,
+        'fctSavePosi': initQ ? savePosi : console.log,
+        'fctClickPosi': fctClickPosi ? fctClickPosi : console.log,
         'width': width,
         'height': height,
         'urlData':  data ? false : urlGetRapports,
